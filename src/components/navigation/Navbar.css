@@ -1,0 +1,34 @@
+.navigation {
+  background: linear-gradient(to right, #4b0082, #8a2be2);
+  padding: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item:hover {
+  color: #ff1493;
+}
+
+.active-link {
+  color: #ff1493;
+}
