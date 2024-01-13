@@ -4,7 +4,6 @@ import Spinner from '../Loaders/Spinner/Spinner'
 const Suspenser = ({ component }) => {
     return (
         <Suspense fallback={<Spinner />}>
-            <h2>Preview</h2>
             {component}
         </Suspense>
     )

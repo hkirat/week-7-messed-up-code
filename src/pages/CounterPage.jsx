@@ -4,6 +4,7 @@ import CountRenderer from '../components/countComponents/CountRenderer'
 const CounterPage = () => {
     return (
         <>
+            <h1>Counter Page</h1>
             <CountRenderer />
             <CountActionButtons />
         </>
