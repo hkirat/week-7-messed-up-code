@@ -1,46 +1,21 @@
-import { useContext, useState } from "react"
-import { CountContext } from "./context";
-
+import RoutesContainer from "./components/routes/RoutesContainer";
+import { CounterContextProvider } from "./context/counter";
+import Navbar from "./components/navigation/Navbar";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-  
   // wrap anyone that wants to use the teleported value inside a provider
   return (
     <div>
-      <CountContext.Provider value={count}>
-        <Count setCount={setCount} />
-      </CountContext.Provider>
+      <BrowserRouter>
+        <CounterContextProvider>
+          <Navbar />
+          <RoutesContainer />
+        </CounterContextProvider>
+      </BrowserRouter>
     </div>
   )
-}
-
-function Count({setCount}) {
-  return <div>
-    <CountRenderer />
-    <Buttons setCount={setCount} />
-  </div>
-}
-
-function CountRenderer() {
-  const count = useContext(CountContext);
-
-  return <div>
-    {count}
-  </div>
-}
-
-function Buttons({setCount}) {
-  const count = useContext(CountContext);
-  return <div>
-    <button onClick={() => {
-      setCount(count + 1)
-    }}>Increase</button>
-
-    <button onClick={() => {
-      setCount(count - 1)
-    }}>Decrease</button>
-  </div>
 }
 
 export default App
