@@ -1,42 +1,51 @@
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import "./App.css";
 
-import { lazy } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
-import './App.css'
-
-const Dashboard = lazy(() => import('./components/Dashboard'))
-const Landing = lazy(() => import('./components/Landing'))
+const Dashboard = lazy(() => import("./components/Dashboard"));
+const Landing = lazy(() => import("./components/Landing"));
 
 function App() {
-  
   // Suspense API
   return (
-    <div>
-      <BrowserRouter>
-        <Appbar />
-        <Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        <BrowserRouter>
+          <Appbar />
+          <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/" element={<Landing />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Suspense>
+  );
 }
 
 function Appbar() {
   const navigate = useNavigate();
 
-  return <div>
+  return (
+    <div>
       <div>
-        <button onClick={() => {
-          navigate("/");
-        }}>Landing page</button>
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Landing page
+        </button>
 
-        <button onClick={() => {
-          navigate("/dashboard");
-        }}>Dashboard</button>
-
+        <button
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+        >
+          Dashboard
+        </button>
       </div>
-  </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
