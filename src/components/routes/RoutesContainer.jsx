@@ -1,14 +1,16 @@
+import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Landing from '../../pages/About'
 import Home from '../../pages/Home'
-import CounterPage from '../../pages/CounterPage'
+import Suspenser from '../lazyLoading/Suspenser.jsx'
+const CounterPage = lazy(() => import('../../pages/CounterPage.jsx'))
+const About = lazy(() => import('../../pages/About.jsx'))
 
 const RoutesContainer = () => {
     return (
         <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/counter" element={<CounterPage />} />
-            <Route path="/about" element={<Landing />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/counter" element={<Suspenser component={<CounterPage />} />} />
+            <Route path="/about" element={<Suspenser component={<About />} />} />
         </Routes>
     )
 }

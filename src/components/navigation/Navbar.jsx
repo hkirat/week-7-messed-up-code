@@ -4,7 +4,7 @@ import "./Navbar.css";
 const navigationTabs = [
   {
     name: "Home",
-    path: "/home",
+    path: "/",
   },
   {
     name: "Counter",
