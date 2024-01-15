@@ -1,32 +1,36 @@
 import { useEffect, useState } from 'react'
 
 function App() {
-  const [exchangeData, setExchangeData] = useState({});
+  const [exchange1Data, setExchange1Data] = useState({});
+  const [exchange2Data, setExchange2Data] = useState({});
   const [bankData, setBankData] = useState({});
-  console.log("Hii there rerender");
 
-  useEffect(function(){
-    setTimeout(() => {
-      setExchangeData({
-        returns: 100
-      });
-    }, 3000);
-
-  },[])
-
-  useEffect(()=>{
-    
-  setTimeout(() => {
-    setExchangeData({
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange1Data({
       returns: 100
     });
-  }, 1000);
-  })
+  }, [])
 
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange2Data({
+      returns: 100
+    });
+  }, [])
 
+  useEffect(() => {
+    // Some operation to get the data
+    setTimeout(() => {
+      setBankData({
+        income: 100
+      });
+    },5000)
+  }, [])
 
-
-  const incomeTax = (bankData.income + exchangeData.returns) * 0.3;
+  const cryptoReturns = exchange1Data.returns + exchange2Data.returns;
+  
+  const incomeTax = (cryptoReturns + bankData.income) * 0.3
 
   return (
     <div>
