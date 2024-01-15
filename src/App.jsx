@@ -1,51 +1,38 @@
-import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import "./App.css";
-
-const Dashboard = lazy(() => import("./components/Dashboard"));
-const Landing = lazy(() => import("./components/Landing"));
+import { useEffect, useState } from 'react'
 
 function App() {
-  // Suspense API
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div>
-        <BrowserRouter>
-          <Appbar />
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/" element={<Landing />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </Suspense>
-  );
-}
+  const [exchangeData, setExchangeData] = useState({});
+  const [bankData, setBankData] = useState({});
+  console.log("Hii there rerender");
 
-function Appbar() {
-  const navigate = useNavigate();
+  useEffect(function(){
+    setTimeout(() => {
+      setExchangeData({
+        returns: 100
+      });
+    }, 3000);
+
+  },[])
+
+  useEffect(()=>{
+    
+  setTimeout(() => {
+    setExchangeData({
+      returns: 100
+    });
+  }, 1000);
+  })
+
+
+
+
+  const incomeTax = (bankData.income + exchangeData.returns) * 0.3;
 
   return (
     <div>
-      <div>
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Landing page
-        </button>
-
-        <button
-          onClick={() => {
-            navigate("/dashboard");
-          }}
-        >
-          Dashboard
-        </button>
-      </div>
+        hi there, your income tax returns are {incomeTax}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
